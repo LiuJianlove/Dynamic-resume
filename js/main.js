@@ -90,8 +90,8 @@ let drawIntroduction = `
         border-radius: 10px;
     }
     `;
-    
-    let resumeIntroduction = `
+
+let resumeIntroduction = `
     /*这样三只宠物小精灵就画好了，初代的御三家是不是很可爱呀！*/
     /*好了，不玩了。接下来介绍一下自己，我需要在右边准备一张白纸。*/
     section#resume_wrapper{
@@ -197,28 +197,28 @@ function writeToResume(callback, source) {
 displayText(  //第一层
     () => {
 
-    displayText(() => {  //第二层
+        displayText(() => {  //第二层
 
-        pixels.style.opacity = '1';
-        displayText(() => {  //第三层
-            
-            writeToResume(()=>{  //第四层，写到简历中的文字。
-                let mark1 = marked(resume.textContent);
-                resume.innerHTML = marked(resume.textContent);
-                resume.innerHTML = marked(resume.textContent);
-                displayText(()=>{
-                    let as = document.links;
-                    for (let a of as){
-                        a.target = "_blank";
-                    }
-                }, markedIntroduction,   //第五层，写到介绍中的文字。
-                openupIntroduction + drawIntroduction + resumeIntroduction);
-            
-            }, resumeContent);
-        
-        }, resumeIntroduction, openupIntroduction + drawIntroduction);
+            pixels.style.opacity = '1';
+            displayText(() => {  //第三层
 
-    }, drawIntroduction, openupIntroduction);
+                writeToResume(() => {  //第四层，写到简历中的文字。
+                    let mark1 = marked(resume.textContent);
+                    resume.innerHTML = marked(resume.textContent);
+                    resume.innerHTML = marked(resume.textContent);
+                    displayText(() => {
+                        let as = document.links;
+                        for (let a of as) {
+                            a.target = "_blank";
+                        }
+                    }, markedIntroduction,   //第五层，写到介绍中的文字。
+                        openupIntroduction + drawIntroduction + resumeIntroduction);
 
-}, 
-openupIntroduction, '');
+                }, resumeContent);
+
+            }, resumeIntroduction, openupIntroduction + drawIntroduction);
+
+        }, drawIntroduction, openupIntroduction);
+
+    },
+    openupIntroduction, '');
